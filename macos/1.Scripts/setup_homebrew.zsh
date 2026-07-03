@@ -48,4 +48,7 @@ else
   echo "***** Homebrew installed successfully! *****"
 fi
 
-brew bundle --verbose --file=/Users/jaimeledesma/.dotfiles/2.Packages-Apps/Brewfile
+# Repo root, derived from this script's location (works from any clone path)
+DOTFILES_DIR="${0:A:h:h:h}"
+
+brew bundle --verbose --file="${DOTFILES_DIR}/macos/2.Packages-Apps/Brewfile"

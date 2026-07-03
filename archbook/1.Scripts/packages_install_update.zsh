@@ -7,8 +7,11 @@ BLUE='\033[0;34m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-PACMAN_LIST="$HOME/.dotfiles/2.Package-lists/pkglist_pacman.txt"
-YAY_LIST="$HOME/.dotfiles/2.Package-lists/pkglist_yay.txt"
+# Repo root, derived from this script's location (works from any clone path)
+DOTFILES_DIR="${0:A:h:h:h}"
+
+PACMAN_LIST="${DOTFILES_DIR}/archbook/2.Package-lists/pkglist_pacman.txt"
+YAY_LIST="${DOTFILES_DIR}/archbook/2.Package-lists/pkglist_yay.txt"
 
 echo "######################################################################################"
 echo -e "               ${YELLOW}!!  Package Installation / Updates !!${NC}                         "
