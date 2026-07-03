@@ -24,5 +24,9 @@ Consolidated multi-profile dotfiles repo managed with [dotbot](https://github.co
 
 ### Karabiner (macos/karabiner, TypeScript)
 
-- `yarn install`, then `yarn run build` compiles `rules.ts` to `karabiner.json` (`yarn run watch` to rebuild on change)
-- Prettier formatting, 2-space indent, strict typing
+- `yarn install`, then `yarn run build` compiles `rules.ts` to `karabiner.json` (`yarn run watch` to rebuild on change); no test framework
+- Prettier formatting (`.prettierrc`), 2-space indent, LF line endings
+- Strict typing: explicit annotations on all parameters and return values; `as const` assertions where appropriate
+- ES6 imports, library imports before local; camelCase functions/variables, PascalCase interfaces/types
+- Code split across `types.ts`, `utils.ts`, `rules.ts`; template literals for multi-line shell commands
+- JSDoc comments on exported functions only
