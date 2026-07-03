@@ -1,0 +1,31 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[user]
+	name = jledesma44
+	email = 49803962+jledesma44@users.noreply.github.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim -f
+
+
+[url "git@github.com:jledesma44/dotfiles-MacOS.git"]
+  insteadOf = "dotfiles:"
+
+
+[url "git@github.com:jledesma44"]
+  insteadOf = "jledesma44:"
+    
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
+
+[credential]
+	helper = store

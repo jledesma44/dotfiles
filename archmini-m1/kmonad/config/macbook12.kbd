@@ -1,0 +1,15 @@
+;;Macbook 12
+(defcfg
+  input (device-file "/dev/input/by-path/pci-0000:00:1e.3-platform-pxa2xx-spi.4-cs-00-event-kbd")
+  output (uinput-sink "Macbook 12")
+  fallthrough true
+  allow-cmd true
+)
+
+(defsrc
+  caps
+)
+
+(deflayer base
+  (tap-hold-next 200 esc lctrl)
+)

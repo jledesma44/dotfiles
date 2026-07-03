@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTBOT_DIR="dotbot"
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_CONFIG="base.yaml"
+
+cd "${BASEDIR}"
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
+
+run_config() {
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${1}"
+}
+
+list_profiles() {
+    local f name
+    for f in "${BASEDIR}"/*.yaml; do
+        name="$(basename "${f}" .yaml)"
+        case "${name}" in
+            base) ;;
+            *) echo "  ${name}" ;;
+        esac
+    done
+}
+
+# Validate all requested profiles before running anything
+for profile in "$@"; do
+    if [[ ! -f "${BASEDIR}/${profile}.yaml" ]]; then
+        echo "Unknown profile: '${profile}' (no ${profile}.yaml found)" >&2
+        echo "Available profiles:" >&2
+        list_profiles >&2
+        exit 1
+    fi
+done
+
+echo ">> Installing base configuration"
+run_config "${BASE_CONFIG}"
+
+for profile in "$@"; do
+    echo ">> Installing profile: ${profile}"
+    run_config "${profile}.yaml"
+done

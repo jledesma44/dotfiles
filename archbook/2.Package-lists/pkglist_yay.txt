@@ -1,0 +1,11 @@
+1password
+gazelle-tui
+gvfs-google
+hyprpanel
+librewolf-bin
+matugen-bin
+python-pywal16
+vscodium-bin
+wlogout
+yay-bin
+yay-bin-debug

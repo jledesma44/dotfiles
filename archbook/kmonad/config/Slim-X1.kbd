@@ -1,0 +1,72 @@
+;;Satechi slim-X1
+(defcfg
+  input (device-file "/dev/input/event23")
+  output (uinput-sink "Slim-x1 Keyboard")
+  fallthrough true
+  allow-cmd true
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  fn   lctl lalt lmet           spc            rmet ralt left down up   rght
+)
+
+(defalias
+  ;; Hyper layer - define this first before referencing it
+  hyperl (layer-toggle hyper)
+  
+  ;; Open apps sublayer
+  opn (layer-toggle open-apps)
+  
+  ;; Tab acts as tab when tapped, hyper layer when held
+  hyp (tap-hold-next-release 200 tab @hyperl)
+  
+  ;; Caps Lock acts as escape when tapped, left ctrl when held
+  cap (tap-hold-next 200 esc lctl)
+  
+  ;; In open-apps layer - launch if not running, otherwise just switch to workspace
+  ;; Uses shell logic to check if app exists before launching
+  spy (cmd-button "sh -c 'hyprctl clients | grep -q \"class: spotify\" && hyprctl dispatch workspace 1 || (hyprctl dispatch exec \"[workspace 1 silent] spotify\" && hyprctl dispatch workspace 1)'")
+  ff (cmd-button "sh -c 'hyprctl clients | grep -q \"class: firefox\" && hyprctl dispatch workspace 2 || (hyprctl dispatch exec \"[workspace 2 silent] firefox\" && hyprctl dispatch workspace 2)'")
+  chr (cmd-button "sh -c 'hyprctl clients | grep -q \"class: chromium\" && hyprctl dispatch workspace 3 || (hyprctl dispatch exec \"[workspace 3 silent] chromium\" && hyprctl dispatch workspace 3)'")
+  vs (cmd-button "sh -c 'hyprctl clients | grep -q \"class: code\" && hyprctl dispatch workspace 4 || (hyprctl dispatch exec \"[workspace 4 silent] code\" && hyprctl dispatch workspace 4)'")
+  kit (cmd-button "sh -c 'hyprctl clients | grep -q \"class: kitty\" && hyprctl dispatch workspace 5 || (hyprctl dispatch exec \"[workspace 5 silent] kitty\" && hyprctl dispatch workspace 5)'")
+  pas (cmd-button "sh -c 'hyprctl clients | grep -q \"class: 1password\" && hyprctl dispatch workspace 6 || (hyprctl dispatch exec \"[workspace 6 silent] 1password\" && hyprctl dispatch workspace 6)'")
+  gh (cmd-button "sh -c 'hyprctl clients | grep -q \"class: chrome-github.com__-Default\" && hyprctl dispatch workspace 7 || (hyprctl dispatch exec \"[workspace 7 silent] chromium --app=\"https://github.com\"\" && hyprctl dispatch workspace 7)'")
+  cd (cmd-button "sh -c 'hyprctl clients | grep -q \"class: chrome-claude.ai__-Default\" && hyprctl dispatch workspace 8 || (hyprctl dispatch exec \"[workspace 8 silent] chromium --app=\"https://claude.ai\"\" && hyprctl dispatch workspace 8)'")
+  fd (cmd-button "sh -c 'hyprctl clients | grep -q \"class: firefox-developer-edition\" && hyprctl dispatch workspace 9 || (hyprctl dispatch exec \"[workspace 9 silent] firefox-developer-edition\" && hyprctl dispatch workspace 9)'")
+  fg (cmd-button "sh -c 'hyprctl clients | grep -q \"class: chrome-figma.com__-Default\" && hyprctl dispatch workspace 10 || (hyprctl dispatch exec \"[workspace 10 silent] chromium --app=\"https://figma.com\"\" && hyprctl dispatch workspace 10)'")
+)
+
+
+(deflayer base
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @hyp q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  fn   lctl lalt lmet           spc            rmet ralt left down up   rght
+)
+
+(deflayer hyper
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    @opn _    _    _    _
+  _    _    _    _    _    _    left down up   rght _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _    _
+)
+
+(deflayer open-apps
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    @cd  _    @pas _    _    _
+  _    _    @spy @fd  @ff  @gh  @fg  _    @kit _    _    _    _
+  _    _    _    @chr @vs  _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _    _
+)
+

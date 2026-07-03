@@ -1,0 +1,71 @@
+;;Apple Magic Keyboard (USB)
+(defcfg
+  input (device-file "/dev/input/by-id/platform-noserial-event-kbd")
+  output (uinput-sink "Apple Keyboard")
+  fallthrough true
+  allow-cmd true
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  fn   lctl lalt lmet           spc            rmet ralt left down up   rght
+)
+
+(defalias
+  ;; Hyper layer - define this first before referencing it
+  hyperl (layer-toggle hyper)
+
+  ;; Open apps sublayer
+  opn (layer-toggle open-apps)
+
+  ;; Tab acts as tab when tapped, hyper layer when held
+  hyp (tap-hold-next-release 200 tab @hyperl)
+
+  ;; Caps Lock acts as escape when tapped, left ctrl when held
+  cap (tap-hold-next 200 esc lctl)
+
+  ;; In open-apps layer - launch if not running, otherwise just switch to workspace
+  ;; Uses shell logic to check if app exists before launching
+  kit (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: kitty\" && /home/jledesma44/.local/bin/hc dispatch workspace 1 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 1 silent] kitty\" && /home/jledesma44/.local/bin/hc dispatch workspace 1)'")
+  ff (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: firefox\" && /home/jledesma44/.local/bin/hc dispatch workspace 2 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 2 silent] firefox\" && /home/jledesma44/.local/bin/hc dispatch workspace 2)'")
+  fd (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: firefox-developer-edition\" && /home/jledesma44/.local/bin/hc dispatch workspace 3 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 3 silent] firefox-developer-edition\" && /home/jledesma44/.local/bin/hc dispatch workspace 3)'")
+  lw (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: librewolf\" && /home/jledesma44/.local/bin/hc dispatch workspace 4 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 4 silent] librewolf\" && /home/jledesma44/.local/bin/hc dispatch workspace 4)'")
+  gh (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: chrome-github.com__-Default\" && /home/jledesma44/.local/bin/hc dispatch workspace 5 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 5 silent] chromium --app=\"https://github.com\"\" && /home/jledesma44/.local/bin/hc dispatch workspace 5)'")
+  cd (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: chrome-claude.ai__-Default\" && /home/jledesma44/.local/bin/hc dispatch workspace 6 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 6 silent] chromium --app=\"https://claude.ai\"\" && /home/jledesma44/.local/bin/hc dispatch workspace 6)'")
+  fg (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: figma.com__-Default\" && /home/jledesma44/.local/bin/hc dispatch workspace 7 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 7 silent] chromium --app=\"https://figma.com\"\" && /home/jledesma44/.local/bin/hc dispatch workspace 7)'")
+  vs (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: code\" && /home/jledesma44/.local/bin/hc dispatch workspace 8 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 8 silent] code\" && /home/jledesma44/.local/bin/hc dispatch workspace 8)'")
+  pas (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: 1password\" && /home/jledesma44/.local/bin/hc dispatch workspace 9 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 9 silent] 1password\" && /home/jledesma44/.local/bin/hc dispatch workspace 9)'")
+  spy (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -qi \"class: spotify\" && /home/jledesma44/.local/bin/hc dispatch workspace 10 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 10 silent] spotify-launcher\" && /home/jledesma44/.local/bin/hc dispatch workspace 10)'")
+  thr (cmd-button "sh -c '/home/jledesma44/.local/bin/hc clients | grep -q \"class: thunar\" && /home/jledesma44/.local/bin/hc dispatch workspace 11 || (/home/jledesma44/.local/bin/hc dispatch exec \"[workspace 11 silent] thunar\" && /home/jledesma44/.local/bin/hc dispatch workspace 11)'")
+)
+
+(deflayer base
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @hyp q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  fn   lctl lalt lmet           spc            rmet ralt left down up   rght
+)
+
+(deflayer hyper
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    @opn _    _    _    _
+  _    _    _    _    _    _    left down up   rght _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _    _
+)
+
+(deflayer open-apps
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    @thr @lw  _    _    _    @cd  _    @pas _    _    _
+  _    _    @spy @fd  @ff  @gh  @fg  _    @kit _    _    _    _
+  _    _    _    _    @vs  _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _    _
+)

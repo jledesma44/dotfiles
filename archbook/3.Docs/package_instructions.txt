@@ -1,0 +1,14 @@
+Instructions to add packages to a list for later installs.
+
+Commands:
+1. To install a package in Arch linux: $ sudo pacman -S <package-name>
+2. To check if the package is already installed:   $ pacman -Q <package-name>
+3. To generate or regenerate a list of installed packages: $ pacman -Qqen > pkglist_native.txt
+       flags: Q = queries the local package database.
+              q = restricts the output to only display the name of the packages
+              e = filters the list to only show explicitly installed packages
+              n = filters the list to only show native packages
+
+4. To install native Arch Linux apps from a list: $ sudo pacman -S <package-list-name>
+5. Update your system: Open your terminal and run the following command to synchronize package databases and upgrade your system:
+        $ sudo pacman -Syu

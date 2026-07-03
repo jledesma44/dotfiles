@@ -1,0 +1,19 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ["~", "~/.config"]
+
+- link:
+    ~/.config/karabiner: macos/karabiner
+
+- shell:
+    - command: macos/1.Scripts/setup_homebrew.zsh
+      stdout: true
+      stdin: true
+      stderr: true
+    - command: macos/1.Scripts/macos_prefs.zsh
+      stdout: true
+      stderr: true
+      stdin: true

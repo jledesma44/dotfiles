@@ -1,0 +1,95 @@
+@import "colors/matugen.css";
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family:
+    "Arimo Nerd Font Propo", "Hack Nerd Font Propo",
+    "JetBrainsMono Nerd Font Propo", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  min-height: 0;
+  border-radius: 50px;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+tooltip label {
+  color: white;
+}
+
+.modules-left {
+  margin-left: 15px;
+}
+.modules-right {
+  margin-right: 15px;
+}
+
+#custom-launcher,
+#clock,
+#workspaces,
+#custom-notification,
+#custom-media,
+#custom-pacman,
+#custom-audio-output,
+#pulseaudio,
+#battery,
+#temperature,
+#network,
+#power-profiles-daemon {
+  background-color: @surface;
+  color: @primary;
+  margin-right: 10px;
+  padding: 0 15px;
+}
+#power-profiles-daemon {
+  margin: 0;
+}
+#workspaces {
+  padding: 8px;
+  border-radius: 20px;
+  background-color: @surface;
+  color: @primary;
+}
+#workspaces button {
+  padding: 0 6px;
+  margin: 0 3px;
+  border-radius: 50px;
+  color: transparent;
+  background: #434343;
+  transition: all 0.3s ease-in-out;
+  background-color: @on_secondary;
+}
+#workspaces button.active {
+  background-color: @primary;
+  color: @surface;
+  min-width: 50px;
+  transition: all 0.3s ease-in-out;
+  font-size: 13px;
+  border-radius: 20px;
+}
+#workspaces button:hover {
+  background-color: @secondary;
+  color: @surface;
+  border-radius: 16px;
+  min-width: 50px;
+  background-size: 400% 400%;
+}
+#workspaces button-urgent {
+  background-color: @error;
+  color: @surface;
+  border-radius: 16px;
+  min-width: 50px;
+  background-size: 400% 400%;
+  transition: all 0.3s ease-in-out;
+}
+#custom-launcher {
+  color: steelblue;
+  font-size: 2rem;
+}

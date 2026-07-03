@@ -1,0 +1,42 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ["~", "~/.config"]
+
+- create:
+    - ~/Development
+    - ~/Writing
+    - ~/Bin
+
+- link:
+    ~/.config/gtk-3.0: archmini-m1/gtk-3.0
+    ~/.config/gtk-4.0: archmini-m1/gtk-4.0
+    ~/.config/hypr: archmini-m1/hypr
+    ~/.config/hyprpanel: archmini-m1/hyprpanel
+    ~/.config/kmonad: archmini-m1/kmonad
+    ~/.config/Kvantum: archmini-m1/Kvantum
+    ~/.config/swaylock: archmini-m1/swaylock
+    ~/.config/wlogout: archmini-m1/wlogout
+    ~/.config/matugen: archmini-m1/matugen
+    ~/.config/nwg-look: archmini-m1/nwg-look
+    ~/.config/pulse: archmini-m1/pulse
+    ~/.config/rofi: archmini-m1/rofi
+    ~/.config/waybar: archmini-m1/waybar
+    ~/.config/wireplumber: archmini-m1/wireplumber
+    ~/Pictures: archmini-m1/Pictures
+
+- shell:
+    - command: archmini-m1/1.Scripts/packages_install_update.zsh
+      stdout: true
+      stderr: true
+      stdin: true
+    - command: archmini-m1/1.Scripts/tailscale-services.zsh
+      stdout: true
+      stderr: true
+      stdin: true
+    - command: archmini-m1/1.Scripts/syncthing-services.zsh
+      stdout: true
+      stderr: true
+      stdin: true

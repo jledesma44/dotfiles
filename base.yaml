@@ -1,0 +1,33 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ["~", "~/.config"]
+
+- create:
+    - ~/Development
+    - ~/.config
+
+- link:
+    ~/.local/bin: shared/bin
+    ~/.config/bat: shared/bat
+    ~/.config/kitty: shared/kitty
+    ~/.config/nvim: shared/nvim
+    ~/.gitconfig: shared/gitconfig
+    ~/.tmux.conf: shared/tmux.conf
+    ~/.bashrc: shared/bashrc
+    ~/.zshenv: shared/zshenv
+    ~/.zshrc: shared/zshrc
+
+- shell:
+    - command: shared/1.Scripts/setup_ohmyzsh.zsh
+      stdout: true
+      stderr: true
+    - command: shared/1.Scripts/setup_tpm.zsh
+      stdout: true
+      stderr: true
+    - command: shared/1.Scripts/setup-github-ssh-keys.zsh
+      stdout: true
+      stdin: true
+      stderr: true

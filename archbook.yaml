@@ -1,0 +1,36 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ["~", "~/.config"]
+
+- link:
+    ~/.config/gtk-3.0: archbook/gtk-3.0
+    ~/.config/gtk-4.0: archbook/gtk-4.0
+    ~/.config/hypr: archbook/hypr
+    ~/.config/hyprpanel: archbook/hyprpanel
+    ~/.config/kmonad: archbook/kmonad
+    ~/.config/Kvantum: archbook/Kvantum
+    ~/.config/wlogout: archbook/wlogout
+    ~/.config/matugen: archbook/matugen
+    ~/.config/nwg-look: archbook/nwg-look
+    ~/.config/pulse: archbook/pulse
+    ~/.config/rofi: archbook/rofi
+    ~/.config/waybar: archbook/waybar
+    ~/.config/wireplumber: archbook/wireplumber
+    ~/Pictures: archbook/Pictures
+
+- shell:
+    - command: archbook/1.Scripts/packages_install_update.zsh
+      stdout: true
+      stderr: true
+      stdin: true
+    - command: archbook/1.Scripts/tailscale-services.zsh
+      stdout: true
+      stderr: true
+      stdin: true
+    - command: archbook/1.Scripts/syncthing-services.zsh
+      stdout: true
+      stderr: true
+      stdin: true
