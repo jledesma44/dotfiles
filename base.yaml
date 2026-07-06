@@ -10,6 +10,7 @@
     - ~/.config
 
 - link:
+    ~/Pictures: shared/Pictures
     ~/.local/bin: shared/bin
     ~/.config/bat: shared/bat
     ~/.config/kitty: shared/kitty
