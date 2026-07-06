@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+Hi there....
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jaimeledesma/.oh-my-zsh"
@@ -203,11 +204,8 @@ export PATH=$HOME/bin:$PATH
 # NVM node version manager export path
 source $(brew --prefix nvm)/nvm.sh
 
-# Set up fzf keybindings and fuzzy completions
-eval "$(fzf --zsh)"
-
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/jaimeledesma/.cache/lm-studio/bin"
+export PATH="$HOME/.cache/lm-studio/bin:$PATH"
 
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
@@ -218,8 +216,18 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export EDITOR=nvim
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/jaimeledesma/.rd/bin:$PATH"
+export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# Added by LM Studio CLI (lms)
+export PATH="$HOME/.lmstudio/bin:$PATH"
+# End of LM Studio CLI section
+
+# Path to hledger finances folder
+export LEDGER_FILE=~$HOME/Finances/2026.journal
+
+#Path to global scripts in .local/bin
+export PATH="$HOME/.local/bin:$PATH"
 
 # FUNCTIONS ===================================================================
 
@@ -245,6 +253,11 @@ export PATH="/Users/jaimeledesma/.rd/bin:$PATH"
 #
 # alias vim="nvims"
 # alias nvim="nvims"
+
+#=============================================================================
+
+# Set up fzf keybindings and fuzzy completions
+eval "$(fzf --zsh)"
 
 ## Coding cockpit: neovim + claude + terminal in tmux
 
@@ -281,13 +294,3 @@ function mkcd() {
 if [ -z "$TMUX" ]; then
   tmux new-session -A -s General-Shell
 fi
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/jaimeledesma/.lmstudio/bin"
-# End of LM Studio CLI section
-
-# Path to hledger finances folder
-export LEDGER_FILE=~/USER/jaimeledesma/Finances/2026.journal
-
-#Path to global scripts in .local/bin
-export PATH="$HOME/.local/bin:$PATH"
