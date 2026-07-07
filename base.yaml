@@ -23,13 +23,13 @@
     ~/.zshrc: shared/zshrc
 
 - shell:
+    - command: shared/1.Scripts/base_pkg_install.zsh
+      stdout: true
+      stderr: true
     - command: shared/1.Scripts/setup_ohmyzsh.zsh
       stdout: true
       stderr: true
     - command: shared/1.Scripts/setup_tpm.zsh
-      stdout: true
-      stderr: true
-    - command: shared/1.Scripts/base_pkg_install.zsh
       stdout: true
       stderr: true
     - command: shared/1.Scripts/install_neovim_latest.zsh
