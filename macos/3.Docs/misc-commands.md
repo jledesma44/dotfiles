@@ -51,5 +51,5 @@ sudo diskutil eraseDisk FAT32 SDCARD MBRFormat /dev/disk4
 - Once the disk has be re-formatted you can safely eject the card:
 
 ```Bash
-sudo diskutil eject /dev//diks4
+sudo diskutil eject /dev/disk4
 ```
