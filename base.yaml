@@ -6,7 +6,7 @@
 - clean: ["~", "~/.config"]
 
 - create:
-    - ~/Development 
+    - ~/Development
     - ~/Pictures
     - ~/.config
 
@@ -27,6 +27,12 @@
       stdout: true
       stderr: true
     - command: shared/1.Scripts/setup_tpm.zsh
+      stdout: true
+      stderr: true
+    - command: shared/1.Scripts/base_pkg_install.zsh
+      stdout: true
+      stderr: true
+    - command: shared/1.Scripts/install_neovim_latest.zsh
       stdout: true
       stderr: true
     - command: shared/1.Scripts/setup-github-ssh-keys.zsh
