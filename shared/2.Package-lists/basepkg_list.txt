@@ -37,4 +37,3 @@ unzip
 curl
 build-essential
 pkg-config
-test
