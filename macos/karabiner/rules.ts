@@ -185,7 +185,7 @@ const rules: KarabinerRules[] = [
       1: app("1Password 7"),
       2: app("Karabiner-Elements"),
       3: app("Rectangle"),
-      4: app("Geesproxmox"),
+      4: app("Geesprox"),
       5: app("Preview"),
     },
 
