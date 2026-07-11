@@ -9,6 +9,13 @@ NC='\033[0m' # No Color
 
 set -e
 
+if command -v nvim >/dev/null 2>&1; then
+    echo -e "######################################################################################"
+    echo -e "       ${GREEN}!!  Neovim is already installed, skipping !!${NC}      "
+    echo -e "######################################################################################"
+    exit 0
+fi
+
 if [ "$(uname)" = "Darwin" ]; then
     echo -e "######################################################################################"
     echo -e "     ${YELLOW}!!  macOS detected, skipping Neovim install (handled via homebrew) !!${NC}     "
@@ -17,12 +24,6 @@ if [ "$(uname)" = "Darwin" ]; then
 fi
 
 if command -v pacman >/dev/null 2>&1; then
-    if pacman -Qq neovim >/dev/null 2>&1; then
-        echo -e "######################################################################################"
-        echo -e "       ${GREEN}!!  Neovim is already installed via pacman, skipping !!${NC}      "
-        echo -e "######################################################################################"
-        exit 0
-    fi
     echo -e "######################################################################################"
     echo -e "              ${YELLOW}!!  INSTALLING NEOVIM WITH PACMAN !!${NC}                     "
     echo -e "######################################################################################"
@@ -33,19 +34,6 @@ fi
 if ! command -v apt-get >/dev/null 2>&1; then
     echo -e "${YELLOW}No supported package manager found, skipping Neovim install${NC}"
     exit 0
-fi
-
-# Skip the build if the installed Neovim already matches the latest stable release.
-latest=$(curl -fsSL https://api.github.com/repos/neovim/neovim/releases/latest | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p')
-
-if command -v nvim >/dev/null 2>&1 && [ -n "$latest" ]; then
-    installed=$(nvim --version | head -n 1 | awk '{print $2}')
-    if [ "$installed" = "$latest" ]; then
-        echo -e "######################################################################################"
-        echo -e "       ${GREEN}!!  Neovim $installed is already the latest version, skipping build !!${NC}      "
-        echo -e "######################################################################################"
-        exit 0
-    fi
 fi
 
 echo -e "######################################################################################"
