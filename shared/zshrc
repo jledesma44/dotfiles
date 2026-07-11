@@ -213,6 +213,9 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 # use the nvim editor
 export EDITOR=nvim
 
+# export path neovim "built from source"
+export PATH="/usr/local/bin:$PATH"
+
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
