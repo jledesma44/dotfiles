@@ -9,7 +9,9 @@ NC='\033[0m' # No Color
 
 set -e
 
-if command -v nvim >/dev/null 2>&1; then
+# Check PATH plus known install locations, since a source build lands in
+# /usr/local/bin which may not be on PATH when this runs under the installer.
+if command -v nvim >/dev/null 2>&1 || [ -x /usr/local/bin/nvim ] || [ -x /usr/bin/nvim ]; then
     echo -e "######################################################################################"
     echo -e "       ${GREEN}!!  Neovim is already installed, skipping !!${NC}      "
     echo -e "######################################################################################"
