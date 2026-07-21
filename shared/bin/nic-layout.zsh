@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
+
 # nic-layout: Open a coding layout with nvim + claude + terminal pane
 # Usage: nic-layout <window|session> <path>
 

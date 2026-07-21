@@ -4,7 +4,7 @@
 # Allows interactive selection and copying of Gulp templates
 
 # Configuration
-TEMPLATES_DIR="/Users/jaimeledesma/Development/1.WebDev/6.Gulp-starter-templates"
+TEMPLATES_DIR="/home/jledesma44/Development/1.WebDev/6.Gulp-starter-templates"
 
 # Colors for output
 RED='\033[0;31m'
@@ -60,19 +60,19 @@ echo "Available Gulp templates:"
 echo
 
 for i in {1..${#templates[@]}}; do
-    echo "  $i) ${templates[$i]}"
+  echo "  $i) ${templates[$i]}"
 done
 
 echo
 
 # Get user selection
 while true; do
-    echo -n "Select a template (1-${#templates[@]}): "
-    read choice
-    
-    if [[ "$choice" =~ ^[0-9]+$ ]] && [[ "$choice" -ge 1 ]] && [[ "$choice" -le ${#templates[@]} ]]; then
-        selected_template="${templates[$choice]}"
-        break
+  echo -n "Select a template (1-${#templates[@]}): "
+  read choice
+
+  if [[ "$choice" =~ ^[0-9]+$ ]] && [[ "$choice" -ge 1 ]] && [[ "$choice" -le ${#templates[@]} ]]; then
+    selected_template="${templates[$choice]}"
+    break
   else
     print_error "Invalid selection. Please enter a number between 1 and ${#templates[@]}"
   fi
@@ -133,4 +133,3 @@ else
   print_error "Failed to copy template"
   exit 1
 fi
-
