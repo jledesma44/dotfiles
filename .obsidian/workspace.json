@@ -185,6 +185,16 @@
   },
   "active": "140c4bcc2159c3f5",
   "lastOpenFiles": [
+    "shared/bin/wificonnect.zsh",
+    "shared/bin/wifi-tui.zsh",
+    "shared/bin/toggle-audio.zsh",
+    "shared/bin/ledesmafamily.zsh",
+    "shared/bin/iphone12.zsh",
+    "shared/bin/floating-bluetui.zsh",
+    "shared/bin/change-wallpaper.zsh",
+    "shared/bin/buchoo.zsh",
+    "shared/kitty/colors/matugen.conf",
+    "shared/kitty/colors",
     "macos/3.Docs/basic-terminal-commands.md",
     "macos/3.Docs/misc-commands.md"
   ]
