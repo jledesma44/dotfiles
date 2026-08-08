@@ -289,6 +289,25 @@ function mkcd() {
   mkdir -p "$@" && cd "$_"
 }
 
+# Safely unmount and power off a USB drive "Linux"
+ejectusb() {
+  if [ -z "$1" ]; then
+    echo "Error: Please specify a drive (e.g., ejectusb sdb)"
+    return 1
+  fi
+
+  local drive="/dev/$1"
+
+  echo "Unmounting partitions for $drive..."
+  sudo umount "${drive}"* 2>/dev/null
+
+  echo "Powering off $drive..."
+  sudo udisksctl power-off -b "$drive"
+}
+
+# Binds Ctrl-U to uppercase the current word
+bindkey '^U' up-case-word
+
 # Start up a Tmux session automatically when launching terminal
 [[ $- != *i* ]] && return
 
