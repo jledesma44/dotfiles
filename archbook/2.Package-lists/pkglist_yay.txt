@@ -1,5 +1,5 @@
 1password
-gazelle-tui
+impala
 gvfs-google
 hyprpanel
 librewolf-bin

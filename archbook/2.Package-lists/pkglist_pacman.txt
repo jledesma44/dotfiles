@@ -86,6 +86,7 @@ hypridle
 hyprland
 hyprlock
 hyprpaper
+impala
 inotify-tools
 intel-ucode
 jq

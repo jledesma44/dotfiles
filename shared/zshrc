@@ -163,9 +163,43 @@ alias gi="git init"
 alias gp="git push"
 alias gu="git pull"
 
-#Alias for brew bundle =================================
+#Alias for brew bundle (Homebrew) MacOs=================================
 
 alias bbd="brew bundle dump --force --file=/Users/jaimeledesma/.dotfiles/macos/2.Packages-Apps/Brewfile"
+
+#Alias for adding new packages to pacman and yay lists ( Arch linux )======
+
+#alias pbd="pacman -Qqen > ~/.dotfiles/2.Package-lists/pkglist_pacman.txt"
+#alias ybd="pacman -Qqem > ~/.dotfiles/2.Package-lists/pkglist_yay.txt"
+
+# function for adding new packages to pkglist_pacman.txt
+pd() {
+
+  #get local host
+  local host_name=${host}
+
+  # Create the directory of it doesn't exist
+  mkdir -p "/home/$USER/.dotfiles/$host_name/2.Package-lists/pkglist_pacman.txt"
+
+  # Append the package name to pkglist_pacman.txt
+  pacman -Qqen >~/.dotfiles/$host_name/2.Package-lists/pkglist_pacman.txt
+}
+
+# function for adding new packages to pkglist_yay.txt
+yd() {
+
+  #get local host
+  local host_name=${host}
+
+  # Create the directory of it doesn't exist
+  mkdir -p "/home/$USER/.dotfiles/$host_name/2.Package-lists/pkglist_yay.txt"
+
+  # Append the package name to pkglist_pacman.txt
+  pacman -Qqen >~/.dotfiles/$host_name/2.Package-lists/pkglist_yay.txt
+}
+
+#Alias for updating packages
+alias pacupdate="~/.dotfiles/1.Scripts/packages_install_update.zsh"
 
 #Alias for Macos Updates and verions=======================
 
@@ -314,3 +348,24 @@ bindkey '^U' up-case-word
 if [ -z "$TMUX" ]; then
   tmux new-session -A -s General-Shell
 fi
+
+# Safely unmount and power off a USB drive "ARCH LINUX"
+ejectusb() {
+  if [ -z "$1" ]; then
+    echo "Error: Please specify a drive (e.g., ejectusb sdb)"
+    return 1
+  fi
+
+  local drive="/dev/$1"
+
+  echo "Unmounting partitions for $drive..."
+  sudo umount "${drive}"* 2>/dev/null
+
+  echo "Powering off $drive..."
+  sudo udisksctl power-off -b "$drive"
+}
+
+# Binds Ctrl-U to uppercase the current word
+bindkey '^U' up-case-word
+
+export PATH=$PATH:/home/jledesma44/.spicetify
