@@ -124,6 +124,13 @@
     "format-icons": ["", "", "", "", ""],
   },
 
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 90,
+    "format": "{temperatureC}°C ",
+    "format-critical": "{temperatureC}°C ",
+  },
+
   "network": {
     "interface": "wlp2s0",
     "format": "{ifname}",
