@@ -15,4 +15,4 @@ wlogout/styles/colors.css
 .obsidian/workspaces.json
 
 #kitty settings
-kitty.conf
+shared/kitty/kitty.conf
