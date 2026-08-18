@@ -14,6 +14,7 @@ return {
       bash = { "shfmt" },
       zsh = { "shfmt" },
       nix = { "alejandra" },
+      qml = { "qmlformat" },
       formatters = {
         shfmt = {
           prepend_args = { "-i", "2", "-ci" },
