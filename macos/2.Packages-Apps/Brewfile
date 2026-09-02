@@ -103,6 +103,8 @@ brew "python@3.12"
 brew "python@3.9"
 # Pure Python Vim clone
 brew "pyvim"
+# Utility that provides fast incremental file transfer
+brew "rsync"
 # Powerful, clean, object-oriented scripting language
 brew "ruby", link: false
 # Safe, concurrent, practical language
