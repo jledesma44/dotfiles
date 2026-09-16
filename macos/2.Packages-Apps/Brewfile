@@ -143,8 +143,8 @@ cask "balenaetcher"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
-# App to build and share containerised applications and microservices
-cask "docker-desktop"
+# GUI for Apple's container CLI
+cask "davit"
 # Collaborative team software
 cask "figma"
 # Per-application volume mixer, equalizer, and audio router
